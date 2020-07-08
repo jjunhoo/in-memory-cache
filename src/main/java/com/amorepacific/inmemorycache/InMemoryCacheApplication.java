@@ -12,5 +12,4 @@ public class InMemoryCacheApplication {
         System.out.println("execute success application ! ");
     }
 
-
 }
