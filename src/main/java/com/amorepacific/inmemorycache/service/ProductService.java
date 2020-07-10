@@ -1,46 +1,67 @@
 package com.amorepacific.inmemorycache.service;
 
 import com.amorepacific.inmemorycache.domain.Product;
-import com.amorepacific.inmemorycache.repository.ProductRepository;
+import com.amorepacific.inmemorycache.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * The type Product service.
+ */
 @Service
 public class ProductService {
 
     @Autowired
-    ProductRepository productRepository;
+    private ProductMapper productMapper;
 
-    // 상품 리스트 조회 > Service
+    /**
+     * Gets product list.
+     * 상품 리스트 조회
+     * @return the product list
+     */
     public List<Product> getProductList() {
         System.out.println("init service - getProductList");
-        return productRepository.findAll();
+        return productMapper.selectProductList();
     }
 
-    // 상품 조회 > Service
-    public Optional<Product> getProduct(Long productNo) {
+    /**
+     * Gets product.
+     * 상품 조회
+     * @param productNo the product no
+     * @return the product
+     */
+    public Product getProduct(Long productNo) {
         System.out.println("init service - getProduct");
-        return productRepository.findById(productNo);
+        return productMapper.selectProduct(productNo);
     }
 
-    // 상품명 수정 > Service
+    /**
+     * Update product name.
+     * 상품명 수정
+     * @param productNo   the product no
+     * @param productName the product name
+     */
     @Transactional
     public void updateProductName(Long productNo, String productName) {
         System.out.println("init service - updateProductName");
-        productRepository.updateProductName(productNo, productName);
+        productMapper.updateProductName(productNo, productName);
 
         // TODO : Transaction 성공 시 Cache 갱신
     }
 
-    // 상품 가격 수정 > Service
+    /**
+     * Update product price.
+     * 상품 가격 수정
+     * @param productNo    the product no
+     * @param productPrice the product price
+     */
     @Transactional
     public void updateProductPrice(Long productNo, Long productPrice) {
         System.out.println("init service - updateProductPrice");
-        productRepository.updateProductPrice(productNo, productPrice);
+        productMapper.updateProductPrice(productNo, productPrice);
 
         // TODO : Transaction 성공 시 Cache 갱신
     }

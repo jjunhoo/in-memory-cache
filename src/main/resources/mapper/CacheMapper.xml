@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.amorepacific.inmemorycache.mapper.CacheMapper">
+    <!-- 카테고리에 속한 상품 조회 -->
+    <select id="selectProductListByCategory" resultType="com.amorepacific.inmemorycache.domain.CacheProduct">
+        SELECT P.PRODUCT_NO AS productNo
+             , P.PRODUCT_NAME AS productName
+             , P.BRAND_NAME AS brandName
+             , P.PRODUCT_PRICE AS productPrice
+             , P.CATEGORY_NO AS categoryNo
+             , C.CATEGORY_NAME AS categoryName
+          FROM CATEGORY AS C
+    INNER JOIN PRODUCT AS P ON C.CATEGORY_NO = P.CATEGORY_NO
+         WHERE C.CATEGORY_NO = #{categoryNo}
+    </select>
+
+    <!-- 상품 조회 -->
+    <select id="selectProduct" parameterType="java.lang.Long" resultType="com.amorepacific.inmemorycache.domain.CacheProduct">
+        SELECT P.PRODUCT_NO AS productNo
+             , P.PRODUCT_NAME AS productName
+             , P.BRAND_NAME AS brandName
+             , P.PRODUCT_PRICE AS productPrice
+             , P.CATEGORY_NO AS categoryNo
+             , C.CATEGORY_NAME AS categoryName
+          FROM CATEGORY AS C
+    INNER JOIN PRODUCT AS P ON C.CATEGORY_NO = P.CATEGORY_NO
+         WHERE PRODUCT_NO = #{productNo}
+    </select>
+</mapper>

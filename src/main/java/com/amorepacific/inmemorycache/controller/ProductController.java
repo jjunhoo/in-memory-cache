@@ -6,40 +6,66 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * The type Product controller.
+ */
 @RestController
 @RequestMapping("/product")
 public class ProductController {
-
+    /**
+     * The Product service.
+     */
     @Autowired
     ProductService productService;
 
-    // 상품 리스트 조회 > Controller
+    /**
+     * Gets product list.
+     * 상품 리스트 조회
+     * @return the product list
+     * @throws Exception the exception
+     */
     @GetMapping("/productList")
     public @ResponseBody List<Product> getProductList() throws Exception {
         System.out.println("init controller - getProductList");
         return productService.getProductList();
     }
 
-    // 상품 조회 > Controller
+    /**
+     * Gets product.
+     * 상품 조회
+     * @param productNo the product no
+     * @return the product
+     * @throws Exception the exception
+     */
     @GetMapping("/product/{productNo}")
-    public @ResponseBody Optional<Product> getProduct(@PathVariable Long productNo) throws Exception {
+    public @ResponseBody Product getProduct(@PathVariable Long productNo) throws Exception {
         System.out.println("init controller - getProduct");
-        // TODO : 카테고리 테이블 JOIN 해서 -> 카테고리명으로 뽑아야됨
         return productService.getProduct(productNo);
     }
 
+    /**
+     * Update product name.
+     * 상품명 수정
+     * @param productNo   the product no
+     * @param productName the product name
+     * @throws Exception the exception
+     */
     // TODO : 테스트 편의상 GetMapping 사용, Return 값 고민
-    // 상품명 수정 > Controller
     @GetMapping("/updateProductName/{productNo}/{productName}")
     public void updateProductName(@PathVariable Long productNo, @PathVariable String productName) throws Exception {
         System.out.println("init controller - updateProductName");
         productService.updateProductName(productNo, productName);
     }
 
+    /**
+     * Update product price.
+     * 상품 가격 수정
+     * @param productNo    the product no
+     * @param productPrice the product price
+     * @throws Exception the exception
+     */
     // TODO : 테스트 편의상 GetMapping 사용, Return 값 고민
-    // 상품 가격 수정 > Controller
     @GetMapping("/updateProductPrice/{productNo}/{productPrice}")
     public void updateProductPrice(@PathVariable Long productNo, @PathVariable Long productPrice) throws Exception {
         System.out.println("init controller - updateProductPrice");
