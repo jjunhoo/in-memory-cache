@@ -2,15 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.amorepacific.inmemorycache.mapper.CategoryMapper">
-    <!-- 카테고리 리스트 조회 -->
-    <select id="selectCategoryList" resultType="com.amorepacific.inmemorycache.domain.Category">
-        SELECT CATEGORY_NO AS categoryNo
-             , CATEGORY_NAME AS categoryName
-             , PARENT_NO AS parentNo
-             , DEPTH AS depth
-          FROM CATEGORY
-    </select>
-
     <!-- 카테고리명 수정 -->
     <update id="updateCategoryName">
         UPDATE CATEGORY

@@ -21,27 +21,12 @@ public class CategoryController {
     CategoryService categoryService;
 
     /**
-     * Gets category list.
-     * 카테고리 리스트 조회
-     *
-     * @return the category list
-     * @throws Exception the exception
-     */
-    @GetMapping("/categoryList")
-    public @ResponseBody List<Category> getCategoryList() throws Exception {
-        System.out.println("init controller - getCategoryList");
-        return categoryService.getCategoryList();
-    }
-
-    /**
      * Update category name.
      * 카테고리명 수정
      * @throws Exception the exception
      */
-    // TODO : 테스트 편의상 GetMapping 사용, Return 값 고민
-    @GetMapping("/updateCategoryName/{categoryNo}/{categoryName}")
+    @GetMapping("/putCategoryName/{categoryNo}/{categoryName}")
     public void updateCategoryName(@PathVariable Long categoryNo, @PathVariable String categoryName) throws Exception {
-        System.out.println("init controller - updateCategoryName");
         categoryService.updateCategoryName(categoryNo, categoryName);
     }
 }

@@ -14,23 +14,6 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
     /**
-     * Select product list list.
-     * 상품 리스트 조회
-     *
-     * @return the list
-     */
-    List<Product> selectProductList();
-
-    /**
-     * Select product product.
-     * 상품 조회
-     *
-     * @param productNo the product no
-     * @return the product
-     */
-    Product selectProduct(@Param("productNo") Long productNo);
-
-    /**
      * Update product name.
      * 상품명 수정
      *

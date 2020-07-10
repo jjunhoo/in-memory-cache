@@ -13,15 +13,6 @@ import java.util.List;
 public interface CategoryMapper {
 
     /**
-     * Select category list list.
-     * 카테고리 리스트 조회
-     *
-     * @return the list
-     */
-    List selectCategoryList();
-
-
-    /**
      * Update category name.
      *
      * @param categoryNo   the category no

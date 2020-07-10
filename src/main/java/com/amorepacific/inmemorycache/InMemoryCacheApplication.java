@@ -1,9 +1,12 @@
 package com.amorepacific.inmemorycache;
 
+import com.amorepacific.inmemorycache.service.CacheService;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -17,10 +20,11 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = {"com.amorepacific.inmemorycache.mapper.*"})
 public class InMemoryCacheApplication {
 
+    @Autowired
+    CacheService cacheService;
+
     public static void main(String[] args) {
-        System.out.println("init application ! ");
         SpringApplication.run(InMemoryCacheApplication.class, args);
-        System.out.println("execute success application ! ");
     }
 
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -42,4 +46,15 @@ public class InMemoryCacheApplication {
         return sqlSessionTemplate;
     }
 
+    @Bean
+    InitializingBean initializingDataCaching() {
+        return () -> {
+            // 카테고리 데이터 Caching
+            cacheService.saveCategoryCacheData();
+            // 상품 데이터 Caching
+            cacheService.saveProductCacheData();
+            // 카테고리에 속한 상품 리스트 데이터 Caching
+            cacheService.saveProductListByCategoryCacheData();
+        };
+    }
 }
