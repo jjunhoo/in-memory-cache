@@ -17,7 +17,7 @@ public class CategoryService {
     @Autowired
     private CacheService cacheService;
 
-    // TODO : Cache Data Eviction Policy, Cache Miss의 처리 및 최소화 방법
+    // TODO : Cache Data Eviction Policy
 
     /**
      * Update category name.

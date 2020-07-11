@@ -1,5 +1,7 @@
 package com.amorepacific.inmemorycache.controller;
 
+import com.amorepacific.inmemorycache.common.BusinessLogicException;
+import com.amorepacific.inmemorycache.common.CommonError;
 import com.amorepacific.inmemorycache.domain.CacheCategory;
 import com.amorepacific.inmemorycache.domain.CacheProduct;
 import com.amorepacific.inmemorycache.service.CacheService;
@@ -57,5 +59,20 @@ public class CacheController {
     @GetMapping("/categoryList")
     public @ResponseBody List<CacheCategory> getCacheCategoryList() throws Exception {
         return cacheService.getCacheCategoryList();
+    }
+
+    /**
+     * Error msg common error.
+     * 공통 Error 처리 클래스
+     *
+     * @param e the e
+     * @return the common error
+     */
+    @ExceptionHandler(BusinessLogicException.class)
+    public @ResponseBody CommonError errorMsg(BusinessLogicException e) {
+        CommonError commonError = new CommonError();
+        commonError.setErrorCode("422");
+        commonError.setErrorMsg("해당 데이터가 없습니다.");
+        return commonError;
     }
 }

@@ -1,5 +1,6 @@
 package com.amorepacific.inmemorycache.service;
 
+import com.amorepacific.inmemorycache.common.BusinessLogicException;
 import com.amorepacific.inmemorycache.domain.CacheCategory;
 import com.amorepacific.inmemorycache.domain.CacheProduct;
 import com.amorepacific.inmemorycache.mapper.CacheMapper;
@@ -51,11 +52,11 @@ public class CacheService {
     public List<CacheCategory> getCacheCategoryList() throws Exception {
         final String categoryListkey = "categoryList";
 
-        // 카테고리 Cache 데이터가 적재되어 있지 않은 경우, Cache 재갱신
+        // 카테고리 리스트 Cache 데이터가 적재되어 있지 않은 경우, Cache 재갱신
         if (categoryGroups.isEmpty()) {
             this.saveCategoryCacheData();
         }
-        // 카테고리 Cache 데이터에 해당 카테고리번호의 카테고리 데이터가 없는 경우
+        // 카테고리 리스트 Cache 데이터에 해당 카테고리 번호의 카테고리 데이터가 없는 경우
         if (ObjectUtils.isEmpty(categoryGroups.get(categoryListkey))) {
             // Cache Miss 시, DB 조회
             List<CacheCategory> categoryList = cacheMapper.selectCategoryList();
@@ -64,8 +65,9 @@ public class CacheService {
                 // Cache 갱신
                 this.setAllCacheData();
                 return categoryList;
+            } else {
+                throw new BusinessLogicException();
             }
-            // TODO : else - return "해당 데이터가 없습니다"
         }
         return categoryGroups.get(categoryListkey);
     }
@@ -106,8 +108,9 @@ public class CacheService {
                 // Cache 갱신
                 this.setAllCacheData();
                 return productList;
+            } else {
+                throw new BusinessLogicException();
             }
-            // TODO : else - return "해당 데이터가 없습니다"
         }
         return productListByCategoryGroups.get(categoryNo);
     }
@@ -151,8 +154,9 @@ public class CacheService {
                 // Cache 갱신
                 this.setAllCacheData();
                 return product;
+            } else {
+                throw new BusinessLogicException();
             }
-            // TODO : else - return "해당 데이터가 없습니다"
         }
         return productGroups.get(productNo);
     }
