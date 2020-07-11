@@ -27,9 +27,11 @@ public class CacheService {
     @Autowired
     private CacheMapper cacheMapper;
 
-    // 카테고리 Cache 데이터 저장용 Map
+    // 카테고리 리스트 Cache 데이터 저장용 Map
     private final Map <String, List<CacheCategory>> categoryGroups = new HashMap<>();
+    // 카테고리에 속한 상품 리스트 Cache 데이터 저장용 Map
     private final Map <String, List<CacheProduct>> productListByCategoryGroups = new HashMap<>();
+    // 개별 상품 Cache 데이터 저장용 Map
     private final Map <String, CacheProduct> productGroups = new HashMap<>();
 
     /**
