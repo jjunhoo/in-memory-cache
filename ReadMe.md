@@ -1,10 +1,8 @@
-###### 프로젝트 실행 및 사용 방법
-
 __[ 프로젝트 실행 방법 ]__
 1. Maven - clean
 2. Maven - install
 3. 프로젝트 실행 
-    - Springboot 기동 시 resources > schema.sql, data.sql 파일을 통해 테이블 생성 및 Dummy 데이터 생성
+    - Springboot 기동 시 resources > schema.sql, data.sql 파일을 통해 자동 테이블 생성 및 Dummy 데이터 생성
     - Dummy 데이터를 기반으로 최초 Cache 데이터 생성
 
 __[ End-Point 사용 방법 ]__
