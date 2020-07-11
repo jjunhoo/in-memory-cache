@@ -62,6 +62,40 @@ public class CacheController {
     }
 
     /**
+     * Update category name.
+     * 카테고리명 수정
+     * @throws Exception the exception
+     */
+    @GetMapping("/putCategoryName/{categoryNo}/{categoryName}")
+    public void updateCategoryName(@PathVariable Long categoryNo, @PathVariable String categoryName) throws Exception {
+        cacheService.updateCategoryName(categoryNo, categoryName);
+    }
+
+    /**
+     * Update product name.
+     * 상품명 수정
+     * @param productNo   the product no
+     * @param productName the product name
+     * @throws Exception the exception
+     */
+    @GetMapping("/putProductName/{productNo}/{productName}")
+    public void updateProductName(@PathVariable Long productNo, @PathVariable String productName) throws Exception {
+        cacheService.updateProductName(productNo, productName);
+    }
+
+    /**
+     * Update product price.
+     * 상품 가격 수정
+     * @param productNo    the product no
+     * @param productPrice the product price
+     * @throws Exception the exception
+     */
+    @GetMapping("/putProductPrice/{productNo}/{productPrice}")
+    public void updateProductPrice(@PathVariable Long productNo, @PathVariable Long productPrice) throws Exception {
+        cacheService.updateProductPrice(productNo, productPrice);
+    }
+
+    /**
      * Error msg common error.
      * 공통 Error 처리 클래스
      *

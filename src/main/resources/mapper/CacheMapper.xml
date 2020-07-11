@@ -90,4 +90,25 @@
              , C.DEPTH AS depth
           FROM CATEGORY AS C
     </select>
+
+    <!-- 카테고리명 수정 -->
+    <update id="updateCategoryName">
+        UPDATE CATEGORY
+           SET CATEGORY_NAME = #{categoryName}
+         WHERE CATEGORY_NO = #{categoryNo}
+    </update>
+
+    <!-- 상품명 수정 -->
+    <update id="updateProductName">
+        UPDATE PRODUCT
+           SET PRODUCT_NAME = #{productName}
+         WHERE PRODUCT_NO = #{productNo}
+    </update>
+
+    <!-- 상품 가격 수정 -->
+    <update id="updateProductPrice">
+        UPDATE PRODUCT
+           SET PRODUCT_PRICE = #{productPrice}
+         WHERE PRODUCT_NO = #{productNo}
+    </update>
 </mapper>

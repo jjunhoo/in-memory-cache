@@ -29,10 +29,10 @@ __[ End-Point 리스트 ]__
     - http://localhost:8080/cache/productListByCategory/{categoryNo}
 
 - 상품명 수정 (DB)
-    - http://localhost:8080/product/putProductName/{productNo}/{productName}
+    - http://localhost:8080/cache/putProductName/{productNo}/{productName}
 
 - 상품 가격 수정 (DB)
-    - http://localhost:8080/product/putProductPrice/{productNo}/{productPrice}
+    - http://localhost:8080/cache/putProductPrice/{productNo}/{productPrice}
 
 - 카테고리명 수정 (DB)
-    - http://localhost:8080/category/putCategoryName/{categoryNo}/{categoryName}
+    - http://localhost:8080/cache/putCategoryName/{categoryNo}/{categoryName}

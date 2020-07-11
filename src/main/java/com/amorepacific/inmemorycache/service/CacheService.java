@@ -6,6 +6,7 @@ import com.amorepacific.inmemorycache.domain.CacheProduct;
 import com.amorepacific.inmemorycache.mapper.CacheMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.HashMap;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class CacheService {
+
+    // TODO : Cache Data Eviction Policy
 
     @Autowired
     private CacheMapper cacheMapper;
@@ -169,5 +172,42 @@ public class CacheService {
         this.saveCategoryCacheData();
         this.saveProductCacheData();
         this.saveProductListByCategoryCacheData();
+    }
+
+    /**
+     * Update category name.
+     * 카테고리명 수정
+     */
+    @Transactional
+    public void updateCategoryName(Long categoryNo, String categoryName) {
+        cacheMapper.updateCategoryName(categoryNo, categoryName);
+        // Cache 데이터 갱신
+        this.setAllCacheData();
+    }
+
+    /**
+     * Update product name.
+     * 상품명 수정
+     * @param productNo   the product no
+     * @param productName the product name
+     */
+    @Transactional
+    public void updateProductName(Long productNo, String productName) {
+        cacheMapper.updateProductName(productNo, productName);
+        // Cache 데이터 갱신
+        this.setAllCacheData();
+    }
+
+    /**
+     * Update product price.
+     * 상품 가격 수정
+     * @param productNo    the product no
+     * @param productPrice the product price
+     */
+    @Transactional
+    public void updateProductPrice(Long productNo, Long productPrice) {
+        cacheMapper.updateProductPrice(productNo, productPrice);
+        // Cache 데이터 갱신
+        this.setAllCacheData();
     }
 }

@@ -54,4 +54,29 @@ public interface CacheMapper {
      * @return the cache category
      */
     List<CacheCategory> selectCategoryList();
+
+    /**
+     * Update category name.
+     *
+     * @param categoryNo   the category no
+     * @param categoryName the category name
+     */
+    void updateCategoryName(Long categoryNo, String categoryName);
+
+    /**
+     * Update product name.
+     * 상품명 수정
+     *
+     * @param productNo   the product no
+     * @param productName the product name
+     */
+    void updateProductName(Long productNo, String productName);
+
+    /**
+     * Update product price.
+     * 상품 가격 수정
+     * @param productNo    the product no
+     * @param productPrice the product price
+     */
+    void updateProductPrice(Long productNo, Long productPrice);
 }
