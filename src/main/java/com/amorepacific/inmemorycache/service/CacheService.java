@@ -27,28 +27,6 @@ public class CacheService {
     private final Map <String, CacheProduct> productGroups = new HashMap<>();
 
     /**
-     * Gets product list by category.
-     * 특정 카테고리에 속한 상품 조회 > Cache
-     *
-     * @param categoryNo the category no
-     * @return the product list by category
-     */
-    public List<CacheProduct> getProductListByCategory(String categoryNo) {
-        return cacheMapper.selectProductListByCategory(categoryNo);
-    }
-
-    /**
-     * Gets product.
-     * 상품 조회 > Cache
-     *
-     * @param productNo the product no
-     * @return the product
-     */
-    public CacheProduct getProduct(Long productNo) {
-        return cacheMapper.selectProduct(productNo);
-    }
-
-    /**
      * Gets category cache data.
      * 카테고리 리스트 Cache 데이터 적재
      */
@@ -79,7 +57,7 @@ public class CacheService {
         }
         // 카테고리 Cache 데이터에 해당 카테고리번호의 카테고리 데이터가 없는 경우
         if (ObjectUtils.isEmpty(categoryGroups.get(categoryListkey))) {
-            // 캐시에 반영 되지 않았을 수 있기 때문에 DB 조회
+            // Cache Miss 시, DB 조회
             List<CacheCategory> categoryList = cacheMapper.selectCategoryList();
             // DB 조회값이 있으면 DB 조회 값 return
             if (!ObjectUtils.isEmpty(categoryList)) {
@@ -121,7 +99,7 @@ public class CacheService {
         }
         // 카테고리에 속한 상품 리스트 Cache 데이터에 해당 카테고리번호의 카테고리에 속한 상품 리스트 데이터가 없는 경우
         if (ObjectUtils.isEmpty(productListByCategoryGroups.get(categoryNo))) {
-            // 캐시에 반영 되지 않았을 수 있기 때문에 DB 조회
+            // Cache Miss 시, DB 조회
             List<CacheProduct> productList = cacheMapper.selectProductListByCategory(categoryNo);
             // DB 조회값이 있으면 DB 조회 값 return
             if (!ObjectUtils.isEmpty(productList)) {
@@ -166,7 +144,7 @@ public class CacheService {
         }
         // 상품 Cache 데이터에 해당 상품번호의 상품 데이터가 없는 경우, Cache 재갱신
         if (ObjectUtils.isEmpty(productGroups.get(productNo))) {
-            // 캐시에 반영 되지 않았을 수 있기 때문에 DB 조회
+            // Cache Miss 시, DB 조회
             CacheProduct product = cacheMapper.selectProduct(Long.valueOf(productNo));
             // DB 조회값이 있으면 DB 조회 값 return
             if (!ObjectUtils.isEmpty(product)) {

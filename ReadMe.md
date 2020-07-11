@@ -1,7 +1,10 @@
-__[ 프로젝트 실행 방법 ]__
-1. Maven - clean
-2. Maven - install
-3. 프로젝트 실행 
+__[ 프로젝트 실행 방법 ]_
+1. Code 버튼 클릭 
+2. Download ZIP
+3. 해당 프로젝트 Import
+4. Maven - clean
+5. Maven - install
+6. 프로젝트 실행 
     - Springboot 기동 시 resources > schema.sql, data.sql 파일을 통해 자동 테이블 생성 및 Dummy 데이터 생성
     - Dummy 데이터를 기반으로 최초 Cache 데이터 생성
 

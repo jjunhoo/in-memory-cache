@@ -3,8 +3,6 @@ package com.amorepacific.inmemorycache.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * The interface Category mapper.
  */

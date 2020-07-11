@@ -1,11 +1,7 @@
 package com.amorepacific.inmemorycache.mapper;
 
-import com.amorepacific.inmemorycache.domain.Product;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * The interface Product mapper.
