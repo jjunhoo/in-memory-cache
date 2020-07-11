@@ -41,7 +41,7 @@ public class InMemoryCacheApplication {
     }
 
     @Bean
-    public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) throws Exception {
+    public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
         final SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
         return sqlSessionTemplate;
     }

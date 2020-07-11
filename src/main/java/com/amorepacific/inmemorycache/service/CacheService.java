@@ -20,7 +20,9 @@ import java.util.stream.Collectors;
 @Service
 public class CacheService {
 
-    // TODO : Cache Data Eviction Policy
+    // TODO : Cache Data Eviction Policy - 메모리 관리 정책
+    // 새로운 값이 추가되었을 때, 자동으로 오래된 데이터를 지워주는 기능을 통해 메모리 관리
+    // LRU - Last Recently Used (가장 오랫동안 사용되지 않은 데이터를 제거)
 
     @Autowired
     private CacheMapper cacheMapper;
@@ -50,9 +52,8 @@ public class CacheService {
      * 카테고리 리스트 Cache 데이터 조회
      *
      * @return the cache category list
-     * @throws Exception the exception
      */
-    public List<CacheCategory> getCacheCategoryList() throws Exception {
+    public List<CacheCategory> getCacheCategoryList() {
         final String categoryListkey = "categoryList";
 
         // 카테고리 리스트 Cache 데이터가 적재되어 있지 않은 경우, Cache 재갱신
@@ -95,9 +96,8 @@ public class CacheService {
      *
      * @param categoryNo the category no
      * @return the cache product list by category
-     * @throws Exception the exception
      */
-    public List<CacheProduct> getCacheProductListByCategory(String categoryNo) throws Exception {
+    public List<CacheProduct> getCacheProductListByCategory(String categoryNo) {
         // 카테고리에 속한 상품 리스트 Cache 데이터가 적재되어 있지 않은 경우, Cache 재갱신
         if (productListByCategoryGroups.isEmpty()) {
             this.saveProductListByCategoryCacheData();
@@ -141,9 +141,8 @@ public class CacheService {
      *
      * @param productNo the product no
      * @return the cache product
-     * @throws Exception the exception
      */
-    public CacheProduct getCacheProduct(String productNo) throws Exception {
+    public CacheProduct getCacheProduct(String productNo) {
         // 상품 Cache 데이터가 적재되어 있지 않은 경우
         if (productGroups.isEmpty()) {
             this.saveProductCacheData();

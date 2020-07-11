@@ -29,10 +29,9 @@ public class CacheController {
      *
      * @param categoryNo the category no
      * @return the product list by category
-     * @throws Exception the exception
      */
     @GetMapping("/productListByCategory/{categoryNo}")
-    public @ResponseBody List<CacheProduct> getProductListByCategory(@PathVariable String categoryNo) throws Exception {
+    public @ResponseBody List<CacheProduct> getProductListByCategory(@PathVariable String categoryNo) {
         return cacheService.getCacheProductListByCategory(categoryNo);
     }
 
@@ -64,10 +63,9 @@ public class CacheController {
     /**
      * Update category name.
      * 카테고리명 수정
-     * @throws Exception the exception
      */
     @GetMapping("/putCategoryName/{categoryNo}/{categoryName}")
-    public void updateCategoryName(@PathVariable Long categoryNo, @PathVariable String categoryName) throws Exception {
+    public void updateCategoryName(@PathVariable Long categoryNo, @PathVariable String categoryName) {
         cacheService.updateCategoryName(categoryNo, categoryName);
     }
 
@@ -76,10 +74,9 @@ public class CacheController {
      * 상품명 수정
      * @param productNo   the product no
      * @param productName the product name
-     * @throws Exception the exception
      */
     @GetMapping("/putProductName/{productNo}/{productName}")
-    public void updateProductName(@PathVariable Long productNo, @PathVariable String productName) throws Exception {
+    public void updateProductName(@PathVariable Long productNo, @PathVariable String productName) {
         cacheService.updateProductName(productNo, productName);
     }
 
@@ -88,10 +85,9 @@ public class CacheController {
      * 상품 가격 수정
      * @param productNo    the product no
      * @param productPrice the product price
-     * @throws Exception the exception
      */
     @GetMapping("/putProductPrice/{productNo}/{productPrice}")
-    public void updateProductPrice(@PathVariable Long productNo, @PathVariable Long productPrice) throws Exception {
+    public void updateProductPrice(@PathVariable Long productNo, @PathVariable Long productPrice) {
         cacheService.updateProductPrice(productNo, productPrice);
     }
 
