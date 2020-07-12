@@ -15,6 +15,7 @@ __[ End-Point 사용 방법 ]__
     - productNo : 상품 번호 (예: 1)
     - productName : 상품명 (예: 테스트상품명)
     - productPrice : 상품 가격 (예 :10000)
+    - brandName : 브랜드명 (예:테스트브랜드명)
     - categoryNo : 카테고리 번호 (예 :1)
     - categoryName : 카테고리명 (예: 테스트카테고리명)
 
