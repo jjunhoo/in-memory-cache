@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
-public class CacheCategory {
+public class CacheCategory extends CacheDomain{
     // 카테고리 번호
     @JsonIgnore
     private Long categoryNo;

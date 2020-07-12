@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
-public class CacheProduct {
+public class CacheProduct extends CacheDomain{
     // 상품번호
     @JsonIgnore
     private Long productNo;
