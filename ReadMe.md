@@ -36,3 +36,6 @@ __[ End-Point 리스트 ]__
 
 - 카테고리명 수정 (DB)
     - http://localhost:8080/cache/putCategoryName/{categoryNo}/{categoryName}
+    
+- 상품 정보 등록 (DB)
+    - http://localhost:8080/cache/setProductInfo/{productNo}/{brandName}/{productName}/{productPrice}/{categoryNo}

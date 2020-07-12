@@ -24,14 +24,6 @@ public interface CacheMapper {
     List<CacheProduct> selectProductListByCategory(String categoryNo);
 
     /**
-     * Gets product list by category.
-     * 카테고리에 속한 상품 리스트 조회 > Cache
-     *
-     * @return the product list by category
-     */
-    List<CacheProduct> selectProductListForCategory();
-
-    /**
      * Select product cache product.
      * 개별 상품 조회 > Cache
      *
@@ -43,6 +35,7 @@ public interface CacheMapper {
     /**
      * Select product list list.
      * 상품 리스트 조회 > Cache
+     *
      * @return the list
      */
     List<CacheProduct> selectProductList();
@@ -75,8 +68,21 @@ public interface CacheMapper {
     /**
      * Update product price.
      * 상품 가격 수정
+     *
      * @param productNo    the product no
      * @param productPrice the product price
      */
     void updateProductPrice(Long productNo, Long productPrice);
+
+    /**
+     * Insert product info.
+     * 상품 정보 등록
+     *
+     * @param productNo    the product no
+     * @param brandName    the brand name
+     * @param productName  the product name
+     * @param productPrice the product price
+     * @param categoryNo   the category no
+     */
+    void insertProductInfo(Long productNo, String brandName, String productName, Long productPrice, Long categoryNo);
 }

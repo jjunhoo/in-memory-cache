@@ -61,4 +61,9 @@ public class Node {
     public void setDataList(List<CacheProduct> dataList) {
         this.dataList = dataList;
     }
+
+    @Override
+    public String toString() {
+        return "id='" + id + '\'' + ", data=" + data.toString() + ", dataList=" + dataList.toString();
+    }
 }

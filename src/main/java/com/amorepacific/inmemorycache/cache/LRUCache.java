@@ -39,8 +39,8 @@ public class LRUCache {
         // 지정된 CAPACITY 보다 실제 사이즈가 크거나 같으면 마지막 노드를 제거하고 삽입
         else {
             System.out.println("Cache Memory is Full - Remove Tail Node");
-            removeTail(); // 마지막 노드 제거
-            add(newNode); // 삽입
+            removeTail();
+            add(newNode);
         }
     }
 
@@ -153,6 +153,8 @@ public class LRUCache {
         if (this.linkedList.getTailNode() != null) {
             this.linkedList.getTailNode().setNextNode(null);
         }
+
+        this.map.remove(this.linkedList.getTailNode().getId());
 
         lastNode = null;
     }

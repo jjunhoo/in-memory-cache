@@ -63,6 +63,9 @@ public class CacheController {
     /**
      * Update category name.
      * 카테고리명 수정
+     *
+     * @param categoryNo   the category no
+     * @param categoryName the category name
      */
     @GetMapping("/putCategoryName/{categoryNo}/{categoryName}")
     public void updateCategoryName(@PathVariable Long categoryNo, @PathVariable String categoryName) {
@@ -72,6 +75,7 @@ public class CacheController {
     /**
      * Update product name.
      * 상품명 수정
+     *
      * @param productNo   the product no
      * @param productName the product name
      */
@@ -83,12 +87,32 @@ public class CacheController {
     /**
      * Update product price.
      * 상품 가격 수정
+     *
      * @param productNo    the product no
      * @param productPrice the product price
      */
     @GetMapping("/putProductPrice/{productNo}/{productPrice}")
     public void updateProductPrice(@PathVariable Long productNo, @PathVariable Long productPrice) {
         cacheService.updateProductPrice(productNo, productPrice);
+    }
+
+    /**
+     * Insert product info.
+     * 상품 정보 등록
+     *
+     * @param productNo    the product no
+     * @param brandName    the brand name
+     * @param productName  the product name
+     * @param productPrice the product price
+     * @param categoryNo   the category no
+     */
+    @GetMapping("/setProductInfo/{productNo}/{brandName}/{productName}/{productPrice}/{categoryNo}")
+    public void insertProductInfo(@PathVariable Long productNo,
+                                  @PathVariable String brandName,
+                                  @PathVariable String productName,
+                                  @PathVariable Long productPrice,
+                                  @PathVariable Long categoryNo){
+        cacheService.insertProductInfo(productNo, brandName, productName, productPrice, categoryNo);
     }
 
     /**

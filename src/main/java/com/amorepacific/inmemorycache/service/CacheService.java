@@ -49,6 +49,7 @@ public class CacheService {
     /**
      * Update category name.
      * 카테고리명 수정
+     *
      * @param categoryNo   the category no
      * @param categoryName the category name
      */
@@ -62,6 +63,7 @@ public class CacheService {
     /**
      * Update product name.
      * 상품명 수정
+     *
      * @param productNo   the product no
      * @param productName the product name
      */
@@ -75,6 +77,7 @@ public class CacheService {
     /**
      * Update product price.
      * 상품 가격 수정
+     *
      * @param productNo    the product no
      * @param productPrice the product price
      */
@@ -83,6 +86,38 @@ public class CacheService {
         cacheMapper.updateProductPrice(productNo, productPrice);
         // Cache 데이터 갱신
         this.setAllCacheData();
+    }
+
+
+    /**
+     * Insert product info.
+     * 상품 정보 등록
+     *
+     * @param productNo    the product no
+     * @param brandName    the brand name
+     * @param productName  the product name
+     * @param productPrice the product price
+     * @param categoryNo   the category no
+     */
+    public void insertProductInfo(Long productNo, String brandName, String productName, Long productPrice, Long categoryNo) {
+        // 상품 정보 등록
+        cacheMapper.insertProductInfo(productNo, brandName, productName, productPrice, categoryNo);
+        // 상품 정보 캐시 등록
+        this.setProductCacheData(String.valueOf(productNo));
+
+    }
+
+    /**
+     * Sets product cache data.
+     * 상품 정보 Cache 추가
+     *
+     * @param productNo the product no
+     */
+    public void setProductCacheData(String productNo) {
+        // 상품 데이터 DB 조회
+        CacheProduct product = cacheMapper.selectProduct(Long.valueOf(productNo));
+        // 상품 데이터 Cache 적재용 데이터 셋팅
+        productInfoByProductNoCache.put(String.valueOf(product.getProductNo()), product);
     }
 
     /**
@@ -135,6 +170,7 @@ public class CacheService {
     /**
      * Gets cache product.
      * 개별 상품 Cache 데이터 조회
+     *
      * @param productNo the product no
      * @return the cache product info
      */
@@ -151,7 +187,7 @@ public class CacheService {
             CacheProduct product = cacheMapper.selectProduct(Long.valueOf(productNo));
             // DB 조회값이 있으면 DB 조회 값 return
             if (!ObjectUtils.isEmpty(product)) {
-                this.setAllCacheData();
+                productInfoByProductNoCache.put(productNo, product);
                 return product;
             } else {
                 throw new BusinessLogicException();
@@ -164,6 +200,7 @@ public class CacheService {
     /**
      * Gets cache category list.
      * 카테고리 리스트 Cache 데이터 조회
+     *
      * @return the cache category list info
      */
     public List<CacheCategory> getCacheCategoryList() {
@@ -187,6 +224,7 @@ public class CacheService {
     /**
      * Gets cache product list by category.
      * 카테고리에 속한 상품 리스트 Cache 데이터 조회
+     *
      * @param categoryNo the category no
      * @return the cache product list by category info
      */
@@ -202,7 +240,7 @@ public class CacheService {
             List<CacheProduct> productList = cacheMapper.selectProductListByCategory(categoryNo);
             // DB 조회값이 있으면 DB 조회 값 return
             if (!ObjectUtils.isEmpty(productList)) {
-                this.setAllCacheData();
+                productInfoByCategoryNoCache.putList(categoryNo, productList);
                 return productList;
             } else {
                 throw new BusinessLogicException();
