@@ -27,10 +27,6 @@ public class InMemoryCacheApplication {
         SpringApplication.run(InMemoryCacheApplication.class, args);
     }
 
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(InMemoryCacheApplication.class);
-    }
-
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();

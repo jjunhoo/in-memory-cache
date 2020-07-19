@@ -31,7 +31,7 @@ public class CacheService {
 
     // 카테고리 리스트 Cache 데이터
     private final LRUCache categoryCache = new LRUCache();
-    // 개별 상품 Cache 데이터 저장용
+    // 개별 상품 Cache 데이터
     private final LRUCache productInfoByProductNoCache = new LRUCache();
     // 카테고리에 속한 상품 리스트 Cache 데이터
     private final LRUCache productInfoByCategoryNoCache = new LRUCache();
@@ -99,12 +99,12 @@ public class CacheService {
      * @param productPrice the product price
      * @param categoryNo   the category no
      */
+    @Transactional
     public void insertProductInfo(Long productNo, String brandName, String productName, Long productPrice, Long categoryNo) {
         // 상품 정보 등록
         cacheMapper.insertProductInfo(productNo, brandName, productName, productPrice, categoryNo);
-        // 상품 정보 캐시 등록
+        // 상품 정보 Cache 데이터 등록
         this.setProductCacheData(String.valueOf(productNo));
-
     }
 
     /**
